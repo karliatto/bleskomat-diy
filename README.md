@@ -241,6 +241,21 @@ By default the server uses a mock c-lightning node. Once you're ready to connect
 
 The server is only accessible on your local machine. But in order for the whole UX flow to work, you will need to expose it to the internet - see [Remote Tunneling](#remote-tunneling).
 
+## Connect to your node with TOR
+
+You have a node running in a raspberripy or in other computer at home and want to connect to it using a TOR hidden service. You can connect to your TOR hidder service by using [socat](https://linux.die.net/man/1/socat) as in the command below.
+
+```bash
+socat TCP4-LISTEN:<port-in-your-computer>,bind=0.0.0.0,fork SOCKS4A:localhost:<tor-hidden-service-address>.onion:<tor-hidden-service-port>,socksport=9050
+```
+
+And update your lighting configuration in file `config.json`:
+
+```
+...
+  "hostname": "127.0.0.1:<port-in-your-computer>",
+...
+```
 
 ## Remote Tunneling
 
