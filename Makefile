@@ -24,7 +24,7 @@
 #
 
 ## Variables
-DEVICE ?= /dev/ttyUSB0
+DEVICE ?= /dev/ttyUSB1
 BAUDRATE ?= 115200
 PLATFORM=espressif32
 
@@ -47,6 +47,10 @@ compile:
 upload:
 	sudo chown ${USER}:${USER} ${DEVICE}
 	platformio run --upload-port ${DEVICE} --target upload
+
+clean:
+	sudo chown ${USER}:${USER} ${DEVICE}
+	platformio run --upload-port ${DEVICE} --target clean
 
 monitor:
 	sudo chown ${USER}:${USER} ${DEVICE}
